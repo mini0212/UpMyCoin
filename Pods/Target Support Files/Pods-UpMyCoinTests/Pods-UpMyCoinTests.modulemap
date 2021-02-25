@@ -1,0 +1,6 @@
+framework module Pods_UpMyCoinTests {
+  umbrella header "Pods-UpMyCoinTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
