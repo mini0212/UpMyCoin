@@ -19,6 +19,7 @@
 		39D0660425E5200C00F84BE7 /* UpMyCoinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D0660325E5200C00F84BE7 /* UpMyCoinTests.swift */; };
 		39D0660F25E5200C00F84BE7 /* UpMyCoinUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D0660E25E5200C00F84BE7 /* UpMyCoinUITests.swift */; };
 		39D0663125E5208100F84BE7 /* CoinListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D0663025E5208100F84BE7 /* CoinListViewModel.swift */; };
+		39E57E5525EFC225000A5CD6 /* Extension + NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E57E5425EFC225000A5CD6 /* Extension + NSObject.swift */; };
 		928937D23E20FD0EBBF1D8E1 /* Pods_UpMyCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58283724733B85DA6023D73C /* Pods_UpMyCoin.framework */; };
 		A22B7259E5AD7776A19D4A1E /* Pods_UpMyCoin_UpMyCoinUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F24920998E326866BE6CF1CA /* Pods_UpMyCoin_UpMyCoinUITests.framework */; };
 		CD228296EE60088C2C7B469F /* Pods_UpMyCoinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F89A1A375021ABC10B08FC90 /* Pods_UpMyCoinTests.framework */; };
@@ -61,6 +62,7 @@
 		39D0660E25E5200C00F84BE7 /* UpMyCoinUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpMyCoinUITests.swift; sourceTree = "<group>"; };
 		39D0661025E5200C00F84BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39D0663025E5208100F84BE7 /* CoinListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListViewModel.swift; sourceTree = "<group>"; };
+		39E57E5425EFC225000A5CD6 /* Extension + NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + NSObject.swift"; sourceTree = "<group>"; };
 		58283724733B85DA6023D73C /* Pods_UpMyCoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UpMyCoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91BE10A186455D22CFEE9BF0 /* Pods-UpMyCoinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpMyCoinTests.release.xcconfig"; path = "Target Support Files/Pods-UpMyCoinTests/Pods-UpMyCoinTests.release.xcconfig"; sourceTree = "<group>"; };
 		B3632F94BA97A01C5893501E /* Pods-UpMyCoin-UpMyCoinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UpMyCoin-UpMyCoinUITests.debug.xcconfig"; path = "Target Support Files/Pods-UpMyCoin-UpMyCoinUITests/Pods-UpMyCoin-UpMyCoinUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				395D0C3225ECDE760023EFE2 /* Networking */,
 				39D0662C25E5206C00F84BE7 /* Main */,
+				39E57E5925EFC22B000A5CD6 /* Extension */,
 				39D0662225E5203700F84BE7 /* Supporting Files */,
 				39D065FA25E5200C00F84BE7 /* Info.plist */,
 			);
@@ -187,6 +190,14 @@
 				39D0663025E5208100F84BE7 /* CoinListViewModel.swift */,
 			);
 			path = CoinListView;
+			sourceTree = "<group>";
+		};
+		39E57E5925EFC22B000A5CD6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				39E57E5425EFC225000A5CD6 /* Extension + NSObject.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		3C537C55CE066FF23F7E4656 /* Pods */ = {
@@ -455,6 +466,7 @@
 				39D065ED25E5200B00F84BE7 /* AppDelegate.swift in Sources */,
 				39D065EF25E5200B00F84BE7 /* SceneDelegate.swift in Sources */,
 				39D0663125E5208100F84BE7 /* CoinListViewModel.swift in Sources */,
+				39E57E5525EFC225000A5CD6 /* Extension + NSObject.swift in Sources */,
 				395D0C2325ECD9920023EFE2 /* ServerUtil.swift in Sources */,
 				395D0C2E25ECDE350023EFE2 /* JSONConverter.swift in Sources */,
 			);
