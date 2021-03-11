@@ -8,37 +8,25 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RxDataSources
 
 struct CoinListViewModel {
-    
-    let coinItem = BehaviorRelay<[CoinResponse]>(value: [])
+    private let coinItem = BehaviorRelay<[CoinResponse]>(value: [])
     private let serverUtil = ServerUtil.shared
     private var disposeBag = DisposeBag()
-    init() {
-        
+    
+    var dataSource: Observable<[CoinSectionModel]> {
+        return coinItem
+            .map { [CoinSectionModel(model: "", items: $0)] }
+            .asObservable()
     }
     
-    
-    func getCoinList() {
+    func requestCoinList() {
         var httpRequest = HttpRequest()
         httpRequest.url = "market/all?isDetails=false"
         
-        serverUtil.rx.requestRx(with: httpRequest).subscribe(onNext: { (list: [CoinResponse]) in
-            self.coinItem.accept(list)
-        }).disposed(by: disposeBag)
-
+        serverUtil.rx.requestRx(with: httpRequest)
+            .bind(to: self.coinItem)
+            .disposed(by: disposeBag)
     }
-}
-
-
-/*
- "market": "KRW-BTC",
- "korean_name": "비트코인",
- "english_name": "Bitcoin"
- */
-
-struct CoinResponse: Decodable {
-    let market: String
-    let koreanName: String
-    let englishName: String
 }
