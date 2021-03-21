@@ -15,9 +15,16 @@ struct CoinListViewModel {
     private let serverUtil = ServerUtil.shared
     private var disposeBag = DisposeBag()
     
-    var dataSource: Observable<[CoinSectionModel]> {
+    var dataSource: Observable<[SectionData]> {
         return coinItem
-            .map { [CoinSectionModel(model: "", items: $0)] }
+            .map { item -> [SectionData] in
+                let sectionItem = item
+                    .enumerated()
+                    .map {
+                        CellInfo(id: "\($0)/", cellInfo: .coin(item: $1))
+                    }
+                return [SectionData(id: "id", items: sectionItem)]
+            }
             .asObservable()
     }
     

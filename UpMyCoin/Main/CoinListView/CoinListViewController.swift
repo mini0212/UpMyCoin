@@ -22,12 +22,16 @@ class CoinListViewController: DisposableViewController {
     
     var viewModel: CoinListViewModel = CoinListViewModel()
     
-    var dataSoure: RxTableViewSectionedAnimatedDataSource<CoinSectionModel>!
+    var dataSoure: RxTableViewSectionedAnimatedDataSource<SectionData>!
     
-    var configureCell: RxTableViewSectionedAnimatedDataSource<CoinSectionModel>.ConfigureCell {
+    var configureCell: RxTableViewSectionedAnimatedDataSource<SectionData>.ConfigureCell {
         return { _, tableView, indexPath, item in
             let cell: CoinListCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.setData(with: item)
+            switch item.cellInfo {
+            case let .coin(item):
+                cell.setData(with: item)
+            default: break
+            }
             return cell
         }
     }
@@ -41,7 +45,7 @@ class CoinListViewController: DisposableViewController {
     
     private func setTableView() {
         tableView.register(cell: CoinListCell.self)
-        dataSoure = RxTableViewSectionedAnimatedDataSource<CoinSectionModel>(configureCell: configureCell)
+        dataSoure = RxTableViewSectionedAnimatedDataSource<SectionData>(configureCell: configureCell)
         
     }
     

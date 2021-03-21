@@ -8,13 +8,13 @@
 import Foundation
 import RxDataSources
 
-protocol CoinItem {
-    
-}
-
-struct SectionData {
+struct SectionData: AnimatableSectionModelType {
     let id: String
     var items: [Item]
+    
+    var identity: String {
+        return id
+    }
     
     init(id: String, items: [Item]) {
         self.id = id
@@ -29,15 +29,29 @@ extension SectionData: Equatable {
 }
 
 extension SectionData: SectionModelType {
-    typealias Item = CoinResponse
+    typealias Item = CellInfo
     
     init(original: SectionData, items: [Item]) {
         self = original
         self.items = items
     }
-    
 }
 
-enum SectionModel {
-    case string(items: String)
+enum CellData {
+    case none
+    case coin(item: CoinResponse)
+}
+
+struct CellInfo: Equatable, IdentifiableType {
+    let id: String
+    let cellInfo: CellData
+    
+    var identity: String {
+        return id
+    }
+    
+    public static func == (lhs: CellInfo, rhs: CellInfo) -> Bool {
+        return lhs.identity == rhs.identity
+    }
+    
 }

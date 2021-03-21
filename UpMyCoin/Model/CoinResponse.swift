@@ -14,26 +14,10 @@ import RxDataSources
  "english_name": "Bitcoin"
  */
 
-struct CoinResponse: Decodable, CoinItem {
+struct CoinResponse: Decodable {
     let market: String
     let koreanName: String
     let englishName: String
-}
-
-extension CoinResponse: Equatable {
-    static func == (lhs: CoinResponse, rhs: CoinResponse) -> Bool {
-        return lhs.market == rhs.market
-            && lhs.koreanName == rhs.koreanName
-            && lhs.englishName == rhs.englishName
-    }
-}
-
-extension CoinResponse: IdentifiableType {
-    typealias Identity = String
-    
-    var identity: String {
-        return self.koreanName
-    }
 }
 
 // IdentifiableType -> RxDataSources를 import 해야 사용가능
