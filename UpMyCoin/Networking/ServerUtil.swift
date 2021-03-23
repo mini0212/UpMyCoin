@@ -46,21 +46,15 @@ extension Observable where Element == (HTTPURLResponse, Any) {
     }
     
     fileprivate func updateWithError(with json: Any) -> Error {
-        print(json)
-        return APIError(code: 100, message: "error")
+        if let error: APIError = JSONConverter.decode(from: json) {
+            return error
+        } else {
+            return ErrorMessage(message: "unknown Error", name: 500)
+        }
     }
 }
 
-struct APIError: Error {
-    let code: Int
-    let message: String
-    
-    init(code: Int,
-         message: String) {
-        self.code = code
-        self.message = message
-    }
-}
+
 
 extension Session {
     fileprivate func httpRequest(with httpRequest: HttpRequest) -> Observable<(HTTPURLResponse, Any)> {

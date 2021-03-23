@@ -8,6 +8,11 @@
 import Foundation
 import RxDataSources
 
+enum CellData {
+    case none
+    case coin(item: CoinName)
+}
+
 struct SectionData: AnimatableSectionModelType {
     let id: String
     var items: [Item]
@@ -35,11 +40,6 @@ extension SectionData: SectionModelType {
         self = original
         self.items = items
     }
-}
-
-enum CellData {
-    case none
-    case coin(item: CoinResponse)
 }
 
 struct CellInfo: Equatable, IdentifiableType {
