@@ -10,6 +10,8 @@ import UIKit
 class CoinListCell: UITableViewCell, NibIdentifiable, ClassIdentifiable {
 
     @IBOutlet weak var koreanNameLabel: UILabel!
+    @IBOutlet weak var marketLabel: UILabel!
+    @IBOutlet weak var coinPriceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,7 +24,8 @@ class CoinListCell: UITableViewCell, NibIdentifiable, ClassIdentifiable {
         // Configure the view for the selected state
     }
     
-    func setData(with data: CoinResponse) {
+    func setData(with data: CoinName) {
         koreanNameLabel.text = data.koreanName
+        marketLabel.text = data.market
     }
 }

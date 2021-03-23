@@ -9,8 +9,6 @@ import UIKit
 import RxSwift
 import RxDataSources
 
-typealias CoinSectionModel = AnimatableSectionModel<String, CoinResponse>
-
 class CoinListViewController: DisposableViewController {
     
     static func instance() -> CoinListViewController {
@@ -45,6 +43,7 @@ class CoinListViewController: DisposableViewController {
     
     private func setTableView() {
         tableView.register(cell: CoinListCell.self)
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
         dataSoure = RxTableViewSectionedAnimatedDataSource<SectionData>(configureCell: configureCell)
         
     }
@@ -56,3 +55,8 @@ class CoinListViewController: DisposableViewController {
     }
 }
 
+extension CoinListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+}
