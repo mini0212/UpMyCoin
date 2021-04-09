@@ -8,45 +8,64 @@
 import Foundation
 
 class CoinTicker: CoinResponse {
-    let tradeDate: Int?
-    let tradeTime: Int?
-    let tradeDateKst: Int?
-    let tradeTimeKst: Int?
-//    let tradeTimestamp: Double
-//    let openingPrice: Double
-//    let highPrice: Double
-//    let lowPrice: Double
-//    let tradePrice: Double
-//    let prevClosingprice: Double
-//    let change: String
-//    let changePrice: Double
-//    let changeRate: Double
-//    let signedChangePrice: Double
-//    let signedXhangeRate: Double
-//    let tradeVolume: Double
-//    let highest52WeekPrice: Double
-//    let highest52WeekDate: String
-//    let lowest52WeekPrice: Double
-//    let lowest52WeekDate: String
-//    let timestamp: Double
+    let tradeDate: String
+    let tradeTime: String
+    let tradeDateKst: String
+    let tradeTimeKst: String
+    let tradeTimestamp: Double
+    let openingPrice: Double
+    let highPrice: Double
+    let lowPrice: Double
+    let tradePrice: Double
+    let prevClosingPrice: Double
+    let change: String
+    let changePrice: Double
+    let changeRate: Double
+    let signedChangePrice: Double
+    let signedChangeRate: Double
+    let tradeVolume: Double
+    let highest52WeekPrice: Double
+    let highest52WeekDate: String
+    let lowest52WeekPrice: Double
+    let lowest52WeekDate: String
+    let timestamp: Double
     
     enum CodingKeys: String, CodingKey {
-        case tradeDate = "trade_date"
-        case tradeTime = "trade_time"
-        case tradeDateKst = "trade_date_kst"
-        case tradeTimeKst = "trade_time_kst"
-//        case tradeTimestamp = "trade_timestamp"
-//        case openingPrice, highPrice, lowPrice, tradePrice, prevClosingprice
-//        case change, changePrice
+        case tradeDate, tradeTime, tradeDateKst, tradeTimeKst, tradeTimestamp
+        case openingPrice
+        case highPrice, lowPrice, tradePrice, prevClosingPrice
+        case change, changePrice, changeRate
+        case signedChangePrice, signedChangeRate
+        case tradeVolume
+        case highest52WeekPrice, highest52WeekDate
+        case lowest52WeekPrice, lowest52WeekDate
+        case timestamp
     }
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        tradeDate = try values.decodeIfPresent(Int.self, forKey: .tradeDate)
-        tradeTime = try values.decodeIfPresent(Int.self, forKey: .tradeTime)
-        tradeDateKst = try values.decodeIfPresent(Int.self, forKey: .tradeDateKst)
-        tradeTimeKst = try values.decodeIfPresent(Int.self, forKey: .tradeTimeKst)
-//        tradeTimestamp = try values.decode(Double.self, forKey: .tradeTimestamp)
+        tradeDate = try values.decode(String.self, forKey: .tradeDate)
+        tradeTime = try values.decode(String.self, forKey: .tradeTime)
+        tradeDateKst = try values.decode(String.self, forKey: .tradeDateKst)
+        tradeTimeKst = try values.decode(String.self, forKey: .tradeTimeKst)
+        tradeTimestamp = try values.decode(Double.self, forKey: .tradeTimestamp)
+        openingPrice = try values.decode(Double.self, forKey: .openingPrice)
+        highPrice = try values.decode(Double.self, forKey: .highPrice)
+        lowPrice = try values.decode(Double.self, forKey: .lowPrice)
+        tradePrice = try values.decode(Double.self, forKey: .tradePrice)
+        prevClosingPrice = try values.decode(Double.self, forKey: .prevClosingPrice)
+        change = try values.decode(String.self, forKey: .change)
+        changePrice = try values.decode(Double.self, forKey: .changePrice)
+        changeRate = try values.decode(Double.self, forKey: .changeRate)
+        signedChangePrice = try values.decode(Double.self, forKey: .signedChangePrice)
+        signedChangeRate = try values.decode(Double.self, forKey: .signedChangeRate)
+        tradeVolume = try values.decode(Double.self, forKey: .tradeVolume)
+        highest52WeekPrice = try values.decode(Double.self, forKey: .highest52WeekPrice)
+        highest52WeekDate = try values.decode(String.self, forKey: .highest52WeekDate)
+        lowest52WeekPrice = try values.decode(Double.self, forKey: .lowest52WeekPrice)
+        lowest52WeekDate = try values.decode(String.self, forKey: .lowest52WeekDate)
+        timestamp = try values.decode(Double.self, forKey: .timestamp)
+
         try super.init(from: decoder)
     }
 }

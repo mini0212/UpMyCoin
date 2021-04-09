@@ -19,26 +19,31 @@ struct CoinListViewModel {
     var dataSource: Observable<[SectionData]> {
         return coinItem
             .map { item -> [SectionData] in
-                
+
                 let markets = item.map { $0.market }.joined(separator: ",")
                 requestTickerInfo(with: markets)
-                
-            
+
+
                 let sectionItem = item
                     .enumerated()
                     .map {
-                        CellInfo(id: "\($0)/", cellInfo: .coin(item: $1))
+
+                        CellInfo(id: "\($1.market)/", cellInfo: .coin(item: $1))
                     }
                 return [SectionData(id: "id", items: sectionItem)]
             }
             .asObservable()
     }
-    
+
     func requestCoinList() {
         var httpRequest = HttpRequest()
         httpRequest.url = "market/all?isDetails=false"
         
         serverUtil.rx.requestRx(with: httpRequest)
+            .do(onNext: { (item: [CoinName]) in
+                let markets = item.map { $0.market }.joined(separator: ",")
+                requestTickerInfo(with: markets)
+            })
             .bind(to: coinItem)
             .disposed(by: disposeBag)
     }
@@ -51,14 +56,8 @@ struct CoinListViewModel {
         httpRequest.encoding = .urlQuery
         
         serverUtil.rx.requestRx(with: httpRequest)
-            .subscribe(onNext: { (tickerItem: [CoinTicker]) in
-                dump(tickerItem.first)
-            }, onError: { error in
-                print(error)
-            })
+            .bind(to: tickerItem)
             .disposed(by: disposeBag)
     }
+    
 }
-
-//https://api.upbit.com/v1/ticker
-//https://api.upbit.com/v1/market/all?isDetails=false

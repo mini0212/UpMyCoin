@@ -154,8 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				399BCB9F25F908BA00FFEB02 /* CoinResponse.swift */,
-				39D09609260A441B00FFE81B /* CoinTicker.swift */,
 				39D095FC260A379000FFE81B /* CoinName.swift */,
+				39D09609260A441B00FFE81B /* CoinTicker.swift */,
 				39D09601260A3B0500FFE81B /* APIError.swift */,
 			);
 			path = Model;
